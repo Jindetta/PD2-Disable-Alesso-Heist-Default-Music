@@ -70,13 +70,9 @@ else
         end
 
         local function is_arena_event(event)
-            local patterns = {"^alesso_", "^crowd_"}
-
             if type(event) == "string" then
-                for _, pattern in ipairs(patterns) do
-                    if event:find(pattern) ~= nil then
-                        return true
-                    end
+                if event:find("^alesso_") ~= nil or event:find("^crowd_") ~= nil then
+                    return true
                 end
             end
 
