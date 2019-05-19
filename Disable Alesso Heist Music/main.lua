@@ -41,12 +41,9 @@ else
                     Global.music_manager.source:set_switch("music_randomizer", track)
                 end
 
-                if not is_arena_event(event) then
-                    Global.music_manager.source:post_event(event)
-                end
-
                 self._current_track = track
                 self._current_event = event
+                play_event(event)
             end
         end
 
@@ -54,9 +51,7 @@ else
             if self._current_event then
                 Global.music_manager.source:post_event("stop_all_music")
 
-                if not is_arena_event(Global.music_manager.current_event) then
-                    Global.music_manager.source:post_event(Global.music_manager.current_event)
-                end
+                play_event(Global.music_manager.current_event)
             end
 
             if self._current_track and Global.music_manager.current_track then
@@ -66,6 +61,12 @@ else
             self._current_event = nil
             self._current_track = nil
             self._skip_play = nil
+        end
+
+        local function play_event(event)
+            if not is_arena_event(event) then
+                Global.music_manager.source:post_event(event)
+            end
         end
 
         local function is_arena_event(event)
