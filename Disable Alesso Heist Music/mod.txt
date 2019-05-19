@@ -1,0 +1,23 @@
+{
+    "name" : "Disable 'Alesso Heist' Default Music",
+    "description" : "Disable 'Alesso Heist' music and enable in-game soundtrack.",
+    "author" : "Jindetta",
+    "version" : "1.3",
+    "blt_version" : 2,
+    "updates" : [
+        {
+            "revision" : 5,
+            "identifier" : "DAHDM"
+        }
+    ],
+    "hooks" : [
+        {
+            "hook_id" : "lib/managers/musicmanager",
+            "script_path" : "main.lua"
+        },
+        {
+            "hook_id" : "lib/tweak_data/levelstweakdata",
+            "script_path" : "main.lua"
+        }
+    ]
+}
