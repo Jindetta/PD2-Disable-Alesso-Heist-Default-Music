@@ -20,6 +20,22 @@ else
         return tracks
     end
 
+    function is_arena_event(event)
+        if type(event) == "string" then
+            if event:find("^alesso_") ~= nil or event:find("^crowd_") ~= nil then
+                return true
+            end
+        end
+
+        return not event
+    end
+
+    function play_event(event)
+        if not is_arena_event(event) then
+            Global.music_manager.source:post_event(event)
+        end
+    end
+
     if Global.game_settings and Global.game_settings.level_id == "arena" then
         local MusicManagerPostEvent = MusicManager.post_event
 
@@ -61,22 +77,6 @@ else
             self._current_event = nil
             self._current_track = nil
             self._skip_play = nil
-        end
-
-        local function play_event(event)
-            if not is_arena_event(event) then
-                Global.music_manager.source:post_event(event)
-            end
-        end
-
-        local function is_arena_event(event)
-            if type(event) == "string" then
-                if event:find("^alesso_") ~= nil or event:find("^crowd_") ~= nil then
-                    return true
-                end
-            end
-
-            return not event
         end
     end
 end
